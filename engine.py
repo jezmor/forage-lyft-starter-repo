@@ -6,7 +6,7 @@ class engine:
         pass
 
 class SternmanEngine(Car, ABC):
-    def __init__(self, last_service_date, warning_light_is_on):
+    def __init__(self, warning_light_is_on):
         self.warning_light_is_on = warning_light_is_on
 
     def needs_service(self):
@@ -16,7 +16,7 @@ class SternmanEngine(Car, ABC):
         return False
 
 class WilloughbyEngine(Car, ABC):
-    def __init__(self, last_service_date, current_mileage, last_service_mileage):
+    def __init__(self, current_mileage, last_service_mileage):
         self.current_mileage = current_mileage
         self.last_service_mileage = last_service_mileage
 
@@ -24,7 +24,7 @@ class WilloughbyEngine(Car, ABC):
         return self.current_mileage - self.last_service_mileage > 60000
 
 class CapuletEngine(Car, ABC):
-    def __init__(self, last_service_date, current_mileage, last_service_mileage):
+    def __init__(self, current_mileage, last_service_mileage):
         self.current_mileage = current_mileage
         self.last_service_mileage = last_service_mileage
 
