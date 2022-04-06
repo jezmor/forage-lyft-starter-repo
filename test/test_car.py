@@ -12,6 +12,9 @@ from engine import CapuletEngine \
 from battery import nubbinbattery \
     ,spindlerbattery
 
+from tires import carrigantires \
+    ,octoprimetires
+
 today = datetime.today().date()
 current_date = today
 
@@ -103,6 +106,33 @@ class test_engine(unittest.TestCase):
         engine = SternmanEngine(warning_light_is_on)
 
         self.assertFalse(engine.needs_service())
+
+class test_wear_sensors(unittest.TestCase):
+    #carrigan tires
+    def test_carrigan_needs_service(self):
+        wear_sensors = (0.91, 0.3, 0.3, 0.4)
+        tires = carrigantires(wear_sensors)
+
+        self.assertTrue(tires.needs_service())
+
+    def test_carrigan_not_needs_service(self):
+        wear_sensors = (0.89, 0.3, 0.3, 0.4)
+        tires = carrigantires(wear_sensors)
+
+        self.assertFalse(tires.needs_service())
+
+    #octoprime tires
+    def test_octoprime_needs_service(self):
+        wear_sensors = (0.91, 0.94, 0.81, 0.5)
+        tires = octoprimetires(wear_sensors)
+
+        self.assertTrue(tires.needs_service())
+
+    def test_octoprimetires_not_needs_service(self):
+        wear_sensors = (0.89, 0.3, 0.3, 0.4)
+        tires = octoprimetires(wear_sensors)
+
+        self.assertFalse(tires.needs_service())
 
 if __name__ == '__main__':
     unittest.main()

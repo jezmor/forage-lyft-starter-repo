@@ -24,10 +24,9 @@ class spindlerbattery(ABC):
         self.last_service_date = last_service_date
 
     def needs_service(self):
-        servicepoint = self.current_date - timedelta(days=(2*365.24)) #2 year service interval
+        servicepoint = self.current_date - timedelta(days=(3*365.24)) #2 year service interval
 
         if self.last_service_date < servicepoint:
             return True
         
         return False
-
